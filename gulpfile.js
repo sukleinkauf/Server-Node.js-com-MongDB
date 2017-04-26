@@ -4,6 +4,15 @@ var gulp = require('gulp'),
 	watch = require('gulp-watch'),
 	nodemon = require('gulp-nodemon');
 
+gulp.task('open', function(){ //função que abre janela ao iniciar servidor
+	var options = {
+		uri: 'http://localhost:3000/',
+		app: 'chrome'
+	};
+	gulp.src('views/layout.pug')
+	.pipe(open(options));
+});
+
 gulp.task('less', function () {//transpilação de less para css
 	return gulp.src('less/*.less')//origem
 	.pipe(less())//transpilação
