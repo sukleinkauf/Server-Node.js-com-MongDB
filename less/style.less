@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Acme');
+
+.container,.modal{
+	font-family: 'Acme', sans-serif;
+}
+
+.container{
+	width: 90%;
+	margin: 0 auto;
+	height: 100%;
+	margin-top: 3%;
+	.title{
+		text-align: center;
+		font-size: 240%;
+	}
+	.imagemtabela{
+		max-height: 70px;
+		max-width: 100%;
+	
+		&:hover{
+			-moz-transform: scale(3);
+			-webkit-transform: scale(3);
+			-o-transform: scale(3);
+			-webkit-transition: 1s all ease; /* É para pega no Chrome e Safira */
+			-moz-transition: 1s all ease; /* Firefox */
+			-o-transition: 1s all ease; /* Opera */
+		}
+	}
+	.card-panel {
+		padding: 0;
+		margin: 0;
+	}
+	.btn-adicionar{
+		margin-top: -8%;
+	}
+}
+.modal{
+	width: 70%;
+	max-height: 100%;
+	#adicionar, #editar, #apagar{
+		margin-right: 3%;
+		display: none;
+	}
+	#cancelar{
+		margin-right: 3%;
+	}
+	.editar-adicionar,.apagar{
+		display: none;
+	}
+	.apagar{
+		padding: 5%;
+	}
+}
