@@ -1,6 +1,113 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  div=produtos[1].nome
+	.container
+		.row
+			.col.s12
+				h1.title Controle de estoque de loja de Roupas
+		.row
+			.col.s1
+				p Adicionar produtos: 
+				a.btn-floating.btn-large.waves-effect.waves-light.blue.lighten-3.btn-adicionar( href="#modal1")
+					i.material-icons add
+			.col.s11
+				table.bordered.tabela
+					thead
+						tr.blue.lighten-3
+							th Imagem
+							th Nome
+							th Cor
+							th Valor
+							th Tamanho
+							th Estoque
+							th Editar
+							th Apagar
+					tbody
+						- for (var x = 0; x < produtos.length; x++){
+							tr.grey.lighten-3
+								td 
+									img.imagemtabela.card-panel.hoverable(src=produtos[x].img)
+								td=produtos[x].nome
+								td=produtos[x].cor
+								td=produtos[x].valor
+								td=produtos[x].tamanho
+								td=produtos[x].estoque
+								td 
+									a.btn-floating.btn-large.waves-effect.waves-light.blue.lighten-3.btn-editar( href="#modal1")
+										i.material-icons mode_edit
+								td 
+									a.btn-floating.btn-large.waves-effect.waves-light.blue.lighten-3.btn-apagar( href="#modal1")
+										i.material-icons delete
+						-}
+	#modal1.modal.modal-fixed-footer
+		.modal-content
+			.row
+				form.col.s12.editar-adicionar
+					.row
+						.input-field.col.s6
+							i.material-icons.prefix label
+							|
+							input#nome.validate(type='text')
+							|
+							label(for='icon_label') Nome do Produto
+						.input-field.col.s6
+							i.material-icons.prefix assignment_ind
+							|
+							input#imagem.validate(type='text')
+							|
+							label(for='icon_assignment_ind') Imagem
+					.row
+						.input-field.col.s12
+							i.material-icons.prefix description
+							|
+							input#descricao.validate(type='text')
+							|
+							label(for='icon_description') Descrição do Produto
+					.row
+						.input-field.col.s4
+							i.material-icons.prefix invert_colors
+							|
+							input#cor.validate(type='text')
+							|
+							label(for='invert_colors') Cor
+						.input-field.col.s4
+							i.material-icons.prefix label_outline
+							|
+							input#valor.validate(type='text')
+							|
+							label(for='icon_label_outline') Valor
+						.input-field.col.s4
+							i.material-icons.prefix loyalty
+							|
+							input#desconto.validate(type='text')
+							|
+							label(for='icon_loyalty') Desconto
+					.row
+						.input-field.col.s3
+							i.material-icons.prefix aspect_ratio
+							|
+							input#tamanho.validate(type='text')
+							|
+							label(for='icon_aspect_ratio') Tamanho
+						.input-field.col.s6
+							i.material-icons.prefix info_outline
+							|
+							input#quantidade.validate(type='text')
+							|
+							label(for='icon_info_outline') Quantidade em estoque
+						.input-field.col.s3
+							.switch#estado
+								label 
+									| Ativo 
+									input(type='checkbox')
+									span.lever
+									|  Inativo
+				form.col.s12.apagar
+					h4 Você tem certeza que deseja excluir este item?
+		.modal-footer
+			a#cancelar.modal-action.modal-close.waves-effect.blue-grey.lighten-3.btn(href='#!') Cancelar
+			a#apagar.modal-action.modal-close.waves-effect.red.darken-1.btn(href='#!') Apagar
+			a#adicionar.modal-action.modal-close.waves-effect.blue.lighten-3.btn(href='#!') Adicionar
+			a#editar.modal-action.modal-close.waves-effect.blue.lighten-3.btn(href='#!') Editar
+				
+
