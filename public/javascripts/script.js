@@ -9,11 +9,12 @@ function listagemProdutos(){
 	$.get(db, function(dados){
 		console.log(dados);
 		for(var i=0;i<dados.length;i++){
+			valor=(parseFloat(dados[i].valor).toFixed(2));
 			$("#tabela").append('<tr class="grey lighten-3">'+
 								'<td><img class="imagemtabela card-panel hoverable" src="'+dados[i].img+'"></td>'+
 								'<td>'+dados[i].nome+'</td>'+
 								'<td>'+dados[i].cor+'</td>'+
-								'<td>'+dados[i].valor+'</td>'+
+								'<td>'+valor.toString().replace(".", ",")+'</td>'+
 								'<td>'+dados[i].tamanho+'</td>'+
 								'<td>'+dados[i].estoque+'</td>'+
 								'<td>'+
