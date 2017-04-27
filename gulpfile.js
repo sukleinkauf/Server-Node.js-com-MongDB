@@ -2,6 +2,7 @@
 var gulp = require('gulp'),
 	less = require('gulp-less'),
 	watch = require('gulp-watch'),
+	open = require('gulp-open'),
 	nodemon = require('gulp-nodemon');
 
 gulp.task('open', function(){ //função que abre janela ao iniciar servidor
@@ -12,6 +13,7 @@ gulp.task('open', function(){ //função que abre janela ao iniciar servidor
 	gulp.src('views/layout.pug')
 	.pipe(open(options));
 });
+
 
 gulp.task('less', function () {//transpilação de less para css
 	return gulp.src('less/*.less')//origem
