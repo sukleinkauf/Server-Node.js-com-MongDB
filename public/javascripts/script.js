@@ -1,20 +1,29 @@
-var db='http://localhost:27017/shopping'
+var db='http://localhost:3000/db'
+
+function tableclean(){ //função que limpa a tabela
+	$("#tabela").html(""); 
+}
 
 function listagemProdutos(){
-			("#tabela").append('<tr class="grey lighten-3">'+
-								'<td><img class="imagemtabela card-panel hoverable" src="'+docs[x].img+'"></td>'+
-								'<td>'+docs[x].nome+'</td>'+
-								'<td>'+docs[x].cor+'</td>'+
-								'<td>'+docs[x].valor+'</td>'+
-								'<td>'+docs[x].tamanho+'</td>'+
-								'<td>'+docs[x].estoque+'</td>'+
+	tableclean();
+	$.get(db, function(dados){
+		console.log(dados);
+		for(var i=0;i<dados.length;i++){
+			$("#tabela").append('<tr class="grey lighten-3">'+
+								'<td><img class="imagemtabela card-panel hoverable" src="'+dados[i].img+'"></td>'+
+								'<td>'+dados[i].nome+'</td>'+
+								'<td>'+dados[i].cor+'</td>'+
+								'<td>'+dados[i].valor+'</td>'+
+								'<td>'+dados[i].tamanho+'</td>'+
+								'<td>'+dados[i].estoque+'</td>'+
 								'<td>'+
-								'<a class="btn-floating btn-large waves-effect waves-light blue lighten-3 btn-editar" href="#modal1"></a>'+
-								'<i class="material-icons">mode_edit</i></td>'+
+								'<a class="btn-floating btn-large waves-effect waves-light blue lighten-3 btn-editar" href="#modal1">'+
+								'<i class="material-icons">mode_edit</i></a></td>'+
 								'<td>'+
-								'<a class="btn-floating btn-large waves-effect waves-light blue lighten-3 btn-apagar" href="#modal1"></a>'+
-								'<i class="material-icons">delete</i></td>');
-	// });
+								'<a class="btn-floating btn-large waves-effect waves-light blue lighten-3 btn-apagar" href="#modal1">'+
+								'<i class="material-icons">delete</i></a></td>');
+		}
+	});
 }
 
 function avisoAdicionar(msg){
@@ -87,6 +96,6 @@ function actions(){
 
 $(document).ready(function(){
 	actions();
-	// listagemProdutos()
+	listagemProdutos()
 	maskmoney();
 });
