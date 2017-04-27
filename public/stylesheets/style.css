@@ -1,8 +1,57 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Acme');
+.container,
+.modal {
+  font-family: 'Acme', sans-serif;
 }
-
-a {
-  color: #00B7FF;
+.container {
+  width: 90%;
+  margin: 0 auto;
+  height: 100%;
+  margin-top: 3%;
+}
+.container .title {
+  text-align: center;
+  font-size: 240%;
+}
+.container .imagemtabela {
+  max-height: 70px;
+  max-width: 100%;
+}
+.container .imagemtabela:hover {
+  -moz-transform: scale(3);
+  -webkit-transform: scale(3);
+  -o-transform: scale(3);
+  -webkit-transition: 1s all ease;
+  /* É para pega no Chrome e Safira */
+  -moz-transition: 1s all ease;
+  /* Firefox */
+  -o-transition: 1s all ease;
+  /* Opera */
+}
+.container .card-panel {
+  padding: 0;
+  margin: 0;
+}
+.container .btn-adicionar {
+  margin-top: -8%;
+}
+.modal {
+  width: 70%;
+  max-height: 100%;
+}
+.modal #adicionar,
+.modal #editar,
+.modal #apagar {
+  margin-right: 3%;
+  display: none;
+}
+.modal #cancelar {
+  margin-right: 3%;
+}
+.modal .editar-adicionar,
+.modal .apagar {
+  display: none;
+}
+.modal .apagar {
+  padding: 5%;
 }

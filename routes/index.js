@@ -6,8 +6,7 @@ router.get('/', function(req, res, next) {
    var db = req.db;
     var collection = db.get('estoque');
 	collection.find({},{},function(e,docs){
-    	console.log(docs);
-		res.render('index', {"produtos" : docs});
+		res.render('index', {"produtos" : docs, "title" : "Roupas"});
     });
 });
 
