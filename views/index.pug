@@ -22,23 +22,7 @@ block content
 							th Estoque
 							th Editar
 							th Apagar
-					tbody
-						- for (var x = 0; x < produtos.length; x++){
-							tr.grey.lighten-3
-								td 
-									img.imagemtabela.card-panel.hoverable(src=produtos[x].img)
-								td=produtos[x].nome
-								td=produtos[x].cor
-								td=produtos[x].valor
-								td=produtos[x].tamanho
-								td=produtos[x].estoque
-								td 
-									a.btn-floating.btn-large.waves-effect.waves-light.blue.lighten-3.btn-editar( href="#modal1")
-										i.material-icons mode_edit
-								td 
-									a.btn-floating.btn-large.waves-effect.waves-light.blue.lighten-3.btn-apagar( href="#modal1")
-										i.material-icons delete
-						-}
+					tbody#tabela
 	#modal1.modal.modal-fixed-footer
 		.modal-content
 			.row

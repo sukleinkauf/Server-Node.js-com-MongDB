@@ -10,6 +10,7 @@ var db = monk('localhost:27017/shopping');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var db = require('./routes/db');
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use(function(req,res,next){
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/db', db);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
