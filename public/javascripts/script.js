@@ -1,4 +1,7 @@
-var db='http://localhost:3000/db'
+var db= {
+	produtos: '/db/estoque',
+	requerimentos: '/requerimentos/'
+}
 
 function tableclean(){ //função que limpa a tabela
 	$("#tabela").html(""); 
@@ -6,11 +9,11 @@ function tableclean(){ //função que limpa a tabela
 
 function listagemProdutos(){
 	tableclean();
-	$.get(db, function(dados){
+	$.get(db.produtos, function(dados){
 		console.log(dados);
 		for(var i=0;i<dados.length;i++){
 			valor=(parseFloat(dados[i].valor).toFixed(2));
-			$("#tabela").append('<tr class="grey lighten-3">'+
+			$("#tabela").append('<tr class="grey lighten-3" data-nome="'+dados[i].nome+'">'+
 								'<td><img class="imagemtabela card-panel hoverable" src="'+dados[i].img+'"></td>'+
 								'<td>'+dados[i].nome+'</td>'+
 								'<td>'+dados[i].cor+'</td>'+
@@ -25,6 +28,24 @@ function listagemProdutos(){
 								'<i class="material-icons">delete</i></a></td>');
 		}
 	});
+}
+
+function ajax(tipo, url, msg, dados){//requisição ajax, conforme dados recebidos
+
+	$.ajax({
+		type: tipo,
+		url: url,
+		data: dados,
+		success: function(){
+			// avisos(msg);
+			// tabelatoda();
+		},
+		error: function(){
+			// msg=("Ops! Algo deu errado, tente novamente!");
+			// avisosdois(msg);
+		}
+	})
+	
 }
 
 function avisoAdicionar(msg){
@@ -64,7 +85,14 @@ function maskmoney(){//máscara para campo de valor
 	$("#valor").maskMoney({showSymbol:true, symbol:"R$", decimal:".", thousands:","});
 }
 
-
+function setnamemodal(produto){//coloca o id do produto como data-item do modal detetar
+	$("#apagar").data('item', produto);
+}
+function apagar(elem){ 
+	var produto = $(elem).data("item");
+	msg=("Produto excluido com sucesso!");
+	ajax("POST", db.requerimentos+produto,msg);	
+}
 
 function actions(){
 
@@ -81,11 +109,14 @@ function actions(){
 	$("#apagar").click(function(){
 		var msg="Produto Excluido com Sucesso!"
 		avisoAdicionar(msg)
+		apagar(this);
 	});
 	$('.tabela').on('click','.btn-editar', function(){
 		arrumaModal("editar");
 	});
 	$('.tabela').on('click','.btn-apagar', function(){
+		var produto = $(this).parents('tr').data('nome');
+		setnamemodal(produto);
 		arrumaModal("apagar");
 	});
 	$('.btn-adicionar').click(function(){
